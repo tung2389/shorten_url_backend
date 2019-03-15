@@ -46,7 +46,8 @@ app.get('/api/all',async function(req,res){
 
 app.post('/',async (req,res) => {
     let url = req.body.url;
-    console.log(req.headers.host);
+    let origin = req.get('origin');
+    console.log(origin);
     let result = await save_to_database(url);
     res.send(result);
 });
