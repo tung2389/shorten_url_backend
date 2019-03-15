@@ -15,12 +15,13 @@ mongoose.connect(MONGO_URL,{ useNewUrlParser: true },function(err){
 });
 
 let limit_access = function(req,res,next){
-    if(req.headers.host === "https://tung2389.github.io/")
+    let origin = req.get('origin');
+    if(origin === "https://tung2389.github.io")
     next();
     else
     res.send("You are not allowed to access");
 }
-//app.use(limit_access);
+app.use(limit_access);
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
@@ -46,8 +47,6 @@ app.get('/api/all',async function(req,res){
 
 app.post('/',async (req,res) => {
     let url = req.body.url;
-    let origin = req.get('origin');
-    console.log(origin);
     let result = await save_to_database(url);
     res.send(result);
 });
