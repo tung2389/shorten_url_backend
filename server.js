@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const bodyParser = require('body-parser');
+const cors = require('cors');
 const feature = require('./function/process_url');
 const save_to_database = feature.save_to_database;
 const all_data = feature.all_data;
@@ -23,6 +24,7 @@ let limit_access = function(req,res,next){
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(cors());
 
 app.get('/',(req,res) => {
     res.send("Hello. This is the back end of shorten_url_app");
