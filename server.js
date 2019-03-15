@@ -21,8 +21,8 @@ let limit_access = function(req,res,next){
     else
     res.send("You are not allowed to access");
 }
-app.use(limit_access);
 
+app.use('/',limit_access);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
