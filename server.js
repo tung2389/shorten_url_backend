@@ -39,10 +39,10 @@ app.get('/:id',async (req,res) => {
     res.send(result);
 });
 
-app.get('/api/all',async function(req,res){
-    let data = await all_data();
-    res.json(data);
-});
+// app.get('/api/all',async function(req,res){
+//     let data = await all_data();
+//     res.json(data);
+// });
 
 app.post('/',limit_access,async (req,res) => {
     let url = req.body.url;
@@ -50,8 +50,8 @@ app.post('/',limit_access,async (req,res) => {
     res.send(result);
 });
 
-app.get('/api/delete',(req,res) => {
-    feature.del_data();
-    res.send("Deleted");
-})
+// app.get('/api/delete',(req,res) => {
+//     feature.del_data();
+//     res.send("Deleted");
+// })
 app.listen(process.env.PORT || 3000);
