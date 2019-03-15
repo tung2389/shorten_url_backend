@@ -22,7 +22,6 @@ let limit_access = function(req,res,next){
     res.send("You are not allowed to access");
 }
 
-app.use('/',limit_access);
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cors());
@@ -45,7 +44,7 @@ app.get('/api/all',async function(req,res){
     res.json(data);
 });
 
-app.post('/',async (req,res) => {
+app.post('/',limit_access,async (req,res) => {
     let url = req.body.url;
     let result = await save_to_database(url);
     res.send(result);
